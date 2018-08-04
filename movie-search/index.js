@@ -12,7 +12,7 @@ app.get("/",(req,res)=>{
 app.get("/search/:title",(req,res)=>{
     scraper.searchMovies(req.params.title)
     .then(movies=>{
-        res.json(movies);
+        res.json(movies);  
     })
 }); 
 
