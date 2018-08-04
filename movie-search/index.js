@@ -1,28 +1,24 @@
-const fetch=require('node-fetch');
-const cheerio=require('cheerio');
+var express=require('express');
+var scraper=require('./scraper');
+var app=express();
 
-const url='https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=';
 
-function searchMovies(searchTerm)
-{
-    return fetch(`${url}${searchTerm}`)
-    .then(response=>response.text())
-}
-
-searchMovies('star wars')
-.then(body=>{
-    const $=cheerio.load(body);
-    const movies=[];
-    $('.findResult').each(function(i,element){
-        const $element=$(element);
-        const $image=$element.find('td a img');
-        const $title=$element.find('td.result_text a');
-        const movie={
-            title:$title.text(),
-            image:$image.attr('src')
-            
-        };
-        movies.push(movie);
+app.get("/",(req,res)=>{
+    res.json({
+        message:'Scraping is fun'
     });
-    console.log(movies);
+}); 
+
+app.get("/search/:title",(req,res)=>{
+    scraper.searchMovies(req.params.title)
+    .then(movies=>{
+        res.json(movies);
+    })
+}); 
+
+
+
+const port=process.env.PORT||3000;
+app.listen(port,()=>{
+    console.log('Listening on port 3000');
 });
