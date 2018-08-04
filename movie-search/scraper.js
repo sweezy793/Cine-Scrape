@@ -28,12 +28,19 @@ function searchMovies(searchTerm)
     });
 }
 
-function getMovie(imdbID){
+function getMovie(imdbID){  //get the movie details of the particular movie's imdb id entered in the url
     return fetch(`${movieUrl}${imdbID}`)
     .then(response=>response.text())
     .then(body=>{
-        console.log(body);
-        return {body};
+        const $=cheerio.load(body);
+        const $title=$('.title_wrapper h1');
+
+        const title=$title.first().contents().filter(function(){
+            return this.type==='text';
+        }).text().trim();
+        return{
+            title
+        };
     });
 }
 
