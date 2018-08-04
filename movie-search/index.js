@@ -16,11 +16,11 @@ app.get("/search/:title",(req,res)=>{
     })
 }); 
 
-app.get("/movie/imdbID",(req,res)=>{
-    scraper.searchMovies(req.params.title)
-    .then(movies=>{
-        res.json(movies);  
-    })
+app.get("/movie/:imdbID",(req,res)=>{
+    scraper.getMovie(req.params.imdbID)
+    .then(movie=>{
+        res.json(movie);  
+    });
 });
 
 

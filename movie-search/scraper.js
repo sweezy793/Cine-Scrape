@@ -1,11 +1,12 @@
 const fetch=require('node-fetch');
 const cheerio=require('cheerio');
 
-const url='https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=';
+const searchUrl='https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=';
+const movieUrl='https://www.imdb.com/title/';
 
 function searchMovies(searchTerm)
 {
-    return fetch(`${url}${searchTerm}`)
+    return fetch(`${searchUrl}${searchTerm}`)
     .then(response=>response.text())
     .then(body=>{
         const $=cheerio.load(body);
@@ -27,5 +28,14 @@ function searchMovies(searchTerm)
     });
 }
 
+function getMovie(imdbID){
+    return fetch(`${movieUrl}${imdbID}`)
+    .then(response=>response.text())
+    .then(body=>{
+        console.log(body);
+        return {body};
+    });
+}
 
-module.exports={searchMovies};
+
+module.exports={searchMovies,getMovie};
