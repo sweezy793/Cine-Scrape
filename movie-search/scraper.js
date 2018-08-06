@@ -38,8 +38,10 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
         const title=$title.first().contents().filter(function(){
             return this.type==='text';
         }).text().trim();
+        const rating = $('meta[itemProp="contentRating"]').attr('content');
         return{
-            title
+            title,
+            rating
         };
     });
 }
