@@ -40,12 +40,14 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
         }).text().trim();
         const rating = $('meta[itemProp="contentRating"]').attr('content');
         const runtime=$('time[itemProp="duration"]').first().contents().filter(function(){
-            return this.type==='text'; //29.48
+            return this.type==='text'; 
         }).text().trim();
+        const genre=$('span[itemProp="genre"]').text().split(',');
         return{
             title,
             rating,
-            runtime
+            runtime,
+            genre
         };
     });
 }
