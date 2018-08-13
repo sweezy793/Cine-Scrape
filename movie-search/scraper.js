@@ -50,7 +50,12 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
         const releaseDate=$('meta[itemProp="datePublished"]').attr('content');
         const imdbRating=$('span[itemProp="ratingValue"]').text();
         const poster=$('div.poster a img').attr('src');
-        const plot=$('div.summary_text').text();
+        const plot=$('div.summary_text').text().trim();
+        const directors=[];
+        $('span[itemProp="director"]').each(function(i,element){
+            const director=$(element).text().trim();
+            directors.push(director);
+        });
         return{
             imdbID,
             title,
@@ -60,7 +65,8 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             imdbRating,
             releaseDate,
             poster,
-            plot
+            plot,
+            directors
         };
     });
 }
