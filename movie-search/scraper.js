@@ -50,6 +50,7 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
         const releaseDate=$('meta[itemProp="datePublished"]').attr('content');
         const imdbRating=$('span[itemProp="ratingValue"]').text();
         const poster=$('div.poster a img').attr('src');
+        const plot=$('div.summary_text').text();
         return{
             imdbID,
             title,
@@ -58,7 +59,8 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             genres,
             imdbRating,
             releaseDate,
-            poster
+            poster,
+            plot
         };
     });
 }
