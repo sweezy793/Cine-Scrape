@@ -39,9 +39,13 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             return this.type==='text';
         }).text().trim();
         const rating = $('meta[itemProp="contentRating"]').attr('content');
+        const runtime=$('time[itemProp="duration"]').first().contents().filter(function(){
+            return this.type==='text'; //29.48
+        }).text().trim();
         return{
             title,
-            rating
+            rating,
+            runtime
         };
     });
 }
