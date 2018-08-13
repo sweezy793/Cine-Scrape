@@ -56,6 +56,16 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             const director=$(element).text().trim();
             directors.push(director);
         });
+        const writers=[];
+        $('.credit_summary_item span[itemProp="creator"]').each(function(i,element){
+            const writer=$(element).text().trim();
+            writers.push(writer);
+        });
+        const stars=[];
+        $('.credit_summary_item span[itemProp="actors"]').each(function(i,element){
+            const star=$(element).text().trim();
+            stars.push(star);
+        });
         return{
             imdbID,
             title,
@@ -66,7 +76,9 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             releaseDate,
             poster,
             plot,
-            directors
+            directors,
+            writers,
+            stars
         };
     });
 }
