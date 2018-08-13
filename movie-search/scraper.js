@@ -66,6 +66,8 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             const star=$(element).text().trim();
             stars.push(star);
         });
+        
+        const storyline=$('#titleStoryLine span[itemProp="description"]').text().trim();
         return{
             imdbID,
             title,
@@ -78,7 +80,8 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             plot,
             directors,
             writers,
-            stars
+            stars,
+            storyline
         };
     });
 }
