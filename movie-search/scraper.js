@@ -66,11 +66,7 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             const star=$(element).text().trim();
             stars.push(star);
         });
-        const fullcast=[];
-        $('#titleCast .cast_list .odd span[itemProp="actors"]').each(function(i,element){
-            const cast=$(element).text().trim();
-            fullcast.push(cast);
-        });
+        
         const storyline=$('#titleStoryLine span[itemProp="description"]').text().trim();
         return{
             imdbID,
@@ -85,7 +81,6 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             directors,
             writers,
             stars,
-            fullcast,
             storyline
         };
     });
