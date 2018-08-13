@@ -48,12 +48,14 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             genres.push(genre);
         });
         const releaseDate=$('meta[itemProp="datePublished"]').attr('content');
-
+        const imdbRating=$('span[itemProp="ratingValue"]').text();
         return{
+            imdbID,
             title,
             rating,
             runtime,
             genres,
+            imdbRating,
             releaseDate
         };
     });
