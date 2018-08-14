@@ -51,21 +51,22 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
         const imdbRating=$('span[itemProp="ratingValue"]').text();
         const poster=$('div.poster a img').attr('src');
         const plot=$('div.summary_text').text().trim();
+        
+
+        function getItems(itemArray){
+            return function(i,element){
+                const item=$(element).text().trim();
+                itemArray.push(item);
+            }
+        }
+
+
         const directors=[];
-        $('span[itemProp="director"]').each(function(i,element){
-            const director=$(element).text().trim();
-            directors.push(director);
-        });
+        $('span[itemProp="director"]').each(getItems(directors));
         const writers=[];
-        $('.credit_summary_item span[itemProp="creator"]').each(function(i,element){
-            const writer=$(element).text().trim();
-            writers.push(writer);
-        });
+        $('.credit_summary_item span[itemProp="creator"]').each(getItems(writers));
         const stars=[];
-        $('.credit_summary_item span[itemProp="actors"]').each(function(i,element){
-            const star=$(element).text().trim();
-            stars.push(star);
-        });
+        $('.credit_summary_item span[itemProp="actors"]').each(getItems(stars));
         
         const storyline=$('#titleStoryLine span[itemProp="description"]').text().trim();
         return{
