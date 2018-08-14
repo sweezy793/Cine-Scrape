@@ -76,6 +76,8 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
 
         const companies = [];
         $('span[itemType="http://schema.org/Organization"]').each(getItems(companies));
+
+        const trailer = $('a[itemProp="trailer"]').attr('href');
         
         return{
             imdbID,
@@ -91,7 +93,8 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             writers,
             stars,
             storyline,
-            companies
+            companies,
+            trailer: `https://www.imdb.com${trailer}`
         };
     });
 }
