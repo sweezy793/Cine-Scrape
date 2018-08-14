@@ -4,8 +4,16 @@ const cheerio=require('cheerio');
 const searchUrl='https://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=';
 const movieUrl='https://www.imdb.com/title/';
 
+const movieCache={} ;
+const searchCache={};
+
 function searchMovies(searchTerm)
 {
+    if(searchCache[searchTerm]){
+        console.log('Serving from cache');
+        return Promise.resolve(searchCache[searchTerm]);
+    }
+
     return fetch(`${searchUrl}${searchTerm}`)
     .then(response=>response.text())
     .then(body=>{
@@ -24,11 +32,20 @@ function searchMovies(searchTerm)
             };
             movies.push(movie);
         });
+
+        searchCache[searchTerm]=movies;
+
         return movies;
     });
 }
 
 function getMovie(imdbID){  //get the movie details of the particular movie's imdb id entered in the url
+    if(movieCache[imdbID])
+    {
+        console.log('Serving from cache');
+        return Promise.resolve(movieCache[imdbID]); 
+    }
+
     return fetch(`${movieUrl}${imdbID}`)
     .then(response=>response.text())
     .then(body=>{
@@ -79,7 +96,7 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
 
         const trailer = $('a[itemProp="trailer"]').attr('href');
         
-        return{
+        const movie={
             imdbID,
             title,
             rating,
@@ -96,6 +113,10 @@ function getMovie(imdbID){  //get the movie details of the particular movie's im
             companies,
             trailer: `https://www.imdb.com${trailer}`
         };
+        
+
+
+        return movie;
     });
 }
 
