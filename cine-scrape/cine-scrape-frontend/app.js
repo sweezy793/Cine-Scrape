@@ -28,10 +28,10 @@ function showResults(results){
         li.appendChild(img);
         
         img.src=movie.image;
-        const span=document.createElement('span');
-        span.textContent=" "+movie.title;
-        
-        li.appendChild(span);
+        const a=document.createElement('a');
+        a.textContent=" "+movie.title;
+        a.href='/movie.html?imdbID='+movie.imdbID;
+        li.appendChild(a);
         
         resultList.appendChild(li);
         resultList.appendChild(br);
