@@ -7,7 +7,25 @@ function getMovie(imdbID){
     .then(res=>res.json());
 }
 
+const properties = [{
+    title: 'Rating',
+    property: 'rating'
+  }, {
+    title: 'Run Time',
+    property: 'runTime'
+  }, {
+    title: 'Released',
+    property: 'datePublished'
+  }, {
+    title: 'Summary',
+    property: 'summary'
+  }, {
+    title: 'Story Line',
+    property: 'storyLine'
+  }];
+
 function showMovie(movie){
+    console.log(movie);
     const section=document.createElement('section');
     main.appendChild(section);
 
