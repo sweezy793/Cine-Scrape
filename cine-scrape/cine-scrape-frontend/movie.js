@@ -13,6 +13,7 @@ function showMovie(movie){
 
     section.outerHTML=`
     <section class="row">
+    <h1>${movie.title}</h1>
         <div class="col-sm-12">
             <img src="${movie.poster}" class="img-fluid"/>
         </div>
