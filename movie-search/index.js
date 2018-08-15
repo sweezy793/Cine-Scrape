@@ -5,7 +5,7 @@ var app=express();
 
 app.get("/",(req,res)=>{
     res.json({
-        message:'Scraping is fun'
+        message:'Get started by using /search route'
     });
 }); 
 
