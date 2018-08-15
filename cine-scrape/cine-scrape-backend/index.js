@@ -1,7 +1,8 @@
 var express=require('express');
 var scraper=require('./scraper');
+var cors=require('cors');
 var app=express();
-
+app.use(cors());
 
 app.get("/",(req,res)=>{
     res.json({
