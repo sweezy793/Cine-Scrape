@@ -20,5 +20,5 @@ You can either directly use the API or in form of application.
 ## Screenshots 
 
 ![alt text](https://raw.githubusercontent.com/sweezy793/Cine-Scrape/master/download.png)
-![alt text](https://raw.githubusercontent.com/sweezy793/Cine-Scrape/master/download (1).png)
+![alt text](https://raw.githubusercontent.com/sweezy793/Cine-Scrape/master/download1.png)
 
