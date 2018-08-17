@@ -39,7 +39,7 @@ function showMovie(movie){
       }, '');
 
       section.outerHTML = `
-      <section class="row">
+      <section class="row" style="margin-bottom:2em">
         
         <div class="col-sm-5">
         <h3 class="text-center">${movie.title}</h3>
